@@ -1,0 +1,11 @@
+Flask
+torch
+transformers
+fastapi
+uvicorn
+nest-asyncio
+googletrans==3.1.0a0
+pytest
+httpx
+requests
+pandas

@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+nest-asyncio
+pytest
+httpx
+
+# dev
+pytest
+requests

@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+nest-asyncio
+googletrans==3.1.0a0
+pytest
+httpx
+yfinance
+
+# dev
+pytest
+requests

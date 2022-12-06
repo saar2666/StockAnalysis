@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./src
+    command: uvicorn app.backend.main:app --reload --workers 1 --host 0.0.0.0 --port 8080
+    volumes:
+      - ./src/:/usr/src/app/
+    ports:
+      - 8888:8080
+    networks:
+      - deploy_network
+    container_name: backend
+    restart: always
+
+  textanalysis:
+    build: ./src/app/DeepLearning
+    command: uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 7070
+    volumes:
+      - ./src/app/DeepLearning:/usr/src/app/
+    ports:
+      - 7070:7070
+    networks:
+      - deploy_network
+    container_name: textanalysis
+    restart: always
+
+  twitter:
+    build: ./src/app/twitter
+    command: uvicorn twitter:app --reload --workers 1 --host 0.0.0.0 --port 9090
+    volumes:
+      - ./src/app/twitter:/usr/src/app/
+    ports:
+      - 9090:9090
+    networks:
+      - deploy_network
+    container_name: twitter
+    restart: always
+
+  streamlit:
+    build: ./src/app/frontend/
+    command: streamlit run ui.py --server.port 8501
+    ports:
+        - 8501:8501
+    networks:
+      - deploy_network
+    container_name: streamlit
+
+networks:
+  deploy_network:
+    driver: bridge

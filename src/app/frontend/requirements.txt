@@ -1,0 +1,4 @@
+yfinance
+streamlit==1.9.0
+altair
+protobuf~=3.19.0
